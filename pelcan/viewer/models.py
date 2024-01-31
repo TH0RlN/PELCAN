@@ -26,3 +26,6 @@ class Cita(models.Model):
     horaFin = models.TimeField()
     perro = models.ForeignKey("Perro", on_delete=models.CASCADE)
     duenho = models.ForeignKey("Cliente", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.perro.nombre + ' ' + self.fecha.strftime("%d/%m/%Y") + ' ' + self.hora.strftime("%H:%M")

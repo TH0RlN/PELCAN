@@ -33,7 +33,7 @@
                 <tbody>
             {% for cita in citas_hoy %}
                 <tr>
-                    <td><a class="text-decoration-none text-black" href="/cita{{ cita.id }}">{{ cita.hora }}</a></td>
+                    <td><a class="text-decoration-none text-black" href="/cita/{{ cita.id }}">{{ cita.hora }}</a></td>
                     <td><a class="text-decoration-none text-black" href="/cliente/{{ cita.duenho.id }}">{{ cita.duenho }}</a></td>
                     <td><a class="text-decoration-none text-black" href="/perro/{{ cita.perro.id }}">{{ cita.perro }}</a></td>
                 </tr>

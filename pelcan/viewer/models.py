@@ -15,6 +15,7 @@ class Perro(models.Model):
     raza = models.CharField(max_length=80)
     edad = models.IntegerField()
     peso = models.FloatField()
+    foto = models.ImageField(upload_to='storage/img/perros')
     duenho = models.ForeignKey("Cliente", on_delete=models.CASCADE)
 
     def __str__(self):

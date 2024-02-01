@@ -16,6 +16,7 @@ def perros(request):
 
 def perro(request, perro_id):
     perro = get_object_or_404(Perro, pk=perro_id)
-    context = {"perro": perro}
+    fotoUrl = '/'.join(perro.foto.name.split('/')[2:])
+    context = {"perro": perro, "fotoUrl": fotoUrl}
 
     return render(request, "viewer/perro_details.html", context)

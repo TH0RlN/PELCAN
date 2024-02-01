@@ -1,3 +1,4 @@
 *.sqlite3
 *__pycache__/
 pelcan/storage
+pelcan/viewer/static/viewer/storage

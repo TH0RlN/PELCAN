@@ -20,3 +20,9 @@ def perro(request, perro_id):
     context = {"perro": perro, "fotoUrl": fotoUrl}
 
     return render(request, "viewer/perro_details.html", context)
+
+def clientes(request):
+    clientes = Cliente.objects.all()
+    context = {"clientes": clientes}
+
+    return render(request, "viewer/clientes.html", context)

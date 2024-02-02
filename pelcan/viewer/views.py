@@ -33,3 +33,22 @@ def cliente(request, cliente_id):
     context = {"cliente": cliente, "perros": perros}
 
     return render(request, "viewer/cliente_details.html", context)
+
+def citas(request):
+    if request.method == "POST":
+        fecha = request.POST.get("fecha")
+        hora = request.POST.get("hora")
+        horaFin = request.POST.get("horaFin")
+        perro = request.POST.get("perro")
+        duenho = request.POST.get("duenho")
+
+        cita = Cita(fecha=fecha, hora=hora, horaFin=horaFin, perro_id=perro, duenho_id=duenho)
+        cita.save()
+        
+        citas = Cita.objects.all()
+        context = {"citas": citas, "success": True}
+        return render(request, "viewer/citas.html", context)
+    else:
+        citas = Cita.objects.all()
+        context = {"citas": citas}
+        return render(request, "viewer/citas.html", context)

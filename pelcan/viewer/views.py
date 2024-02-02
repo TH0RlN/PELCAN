@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Cita, Perro, Cliente
+from calendar import HTMLCalendar
 import datetime
 
 def index(request):
@@ -33,6 +34,12 @@ def cliente(request, cliente_id):
     context = {"cliente": cliente, "perros": perros}
 
     return render(request, "viewer/cliente_details.html", context)
+
+def calendario(request):
+    citas = Cita.objects.all()
+    context = {"citas": citas}
+
+    return render(request, "viewer/calendario.html", context)
 
 def citas(request):
     if request.method == "POST":

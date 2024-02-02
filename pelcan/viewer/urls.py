@@ -10,4 +10,5 @@ urlpatterns = [
     path("cliente/", views.clientes),
     path("cliente/<int:cliente_id>/", views.cliente),
     path("calendario/", views.calendario),
+    path("citas/", views.citas),
 ]

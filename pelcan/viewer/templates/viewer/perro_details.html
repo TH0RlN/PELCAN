@@ -1,65 +1,47 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>PELCAN - {{ perro.nombre }}</title>
-</head>
-
-<body>
-    <header class="p-2 text-bg-dark">
-        <div class="container">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <h1><a class="h1 text-decoration-none" href="/">PELCAN</a></h1>
-                <ul class="nav ms-3 col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a class="nav-link px-2 text-white" href="/perro">Perros</a></li>
-                    <li><a class="nav-link px-2 text-white" href="/cliente">Clientes</a></li>
-                    <li><a class="nav-link px-2 text-white" href="/calendario">Calendario</a></li>
-                </ul>
-            </div>
-        </div>
-    </header>
-    <div class="container my-4">
-        <div class="container">
-            <h1 class="display-4">{{ perro.nombre }}</h1>
-        </div>
-        <hr class="hr">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-7 me-5">
-                    <div class="row">
-                        <div class="col-md-3">
-                            {% load static %}
-                            <a href="{% static fotoUrl %}" target="_blank"><img class="img-thumbnail img-fluid my-2" src="{% static fotoUrl %}" alt="" style="height: 150px; width: 150px;"></a>
-                        </div>
-                        <div class="col-md-9">
-                            <h2>Información</h2>
-                            <ul class="list-group">
-                                <li class="list-group-item"><b>Raza:</b> {{ perro.raza }}</li>
-                                <li class="list-group-item"><b>Peso:</b> {{ perro.peso }} kg</li>
-                            </ul>
-                        </div>
+{% extends 'viewer/template.html' %}
+{% block nav-links %}
+<li><a class="nav-link px-2 text-white" href="/perro">Perros</a></li>
+<li><a class="nav-link px-2 text-white" href="/cliente">Clientes</a></li>
+<li><a class="nav-link px-2 text-white" href="/calendario">Calendario</a></li>
+{% endblock nav-links%}
+{% block content %}
+<div class="container my-4">
+    <div class="container">
+        <h1 class="display-4">{{ perro.nombre }}</h1>
+    </div>
+    <hr class="hr">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7 me-5">
+                <div class="row">
+                    <div class="col-md-3">
+                        {% load static %}
+                        <a href="{% static fotoUrl %}" target="_blank"><img class="img-thumbnail img-fluid my-2"
+                                src="{% static fotoUrl %}" alt="" style="height: 150px; width: 150px;"></a>
+                    </div>
+                    <div class="col-md-9">
+                        <h2>Información</h2>
+                        <ul class="list-group">
+                            <li class="list-group-item"><b>Raza:</b> {{ perro.raza }}</li>
+                            <li class="list-group-item"><b>Peso:</b> {{ perro.peso }} kg</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="col-md">
-                    <div class="card">
-                        <div class="card-header">
-                            Dueño
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">{{ perro.duenho.nombre}} {{ perro.duenho.apellido }}</h5>
-                            <p class="card-text">{{ perro.duenho.telefono }}</p>
-                            <p class="card-text">{{ perro.duenho.email }}</p>
-                            <a href="/cliente/{{ perro.duenho.id }}" class="btn btn-primary">Ver cliente</a>
-                        </div>
+            </div>
+            <div class="col-md">
+                <div class="card">
+                    <div class="card-header">
+                        Dueño
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ perro.duenho.nombre}} {{ perro.duenho.apellido }}</h5>
+                        <p class="card-text">{{ perro.duenho.telefono }}</p>
+                        <p class="card-text">{{ perro.duenho.email }}</p>
+                        <a href="/cliente/{{ perro.duenho.id }}" class="btn btn-primary">Ver cliente</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</body>
-
-</html>
+</div>
+{% endblock content %}

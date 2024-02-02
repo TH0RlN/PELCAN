@@ -1,0 +1,36 @@
+{% extends 'viewer/template.html' %}
+{% block nav-links %}
+<li><a class="nav-link px-2 text-white" href="/perro">Perros</a></li>
+<li><a class="nav-link px-2 text-white" href="/cliente">Clientes</a></li>
+<li><a class="nav-link px-2 text-secondary" href="/citas">Citas</a></li>
+<li><a class="nav-link px-2 text-white" href="/calendario">Calendario</a></li>
+{% endblock nav-links%}
+{% block content %}
+    <div class="container my-5">
+        {% if citas %}
+        <h2>Citas</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Hora</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Perro</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cita in citas %}
+                <tr>
+                    <td>{{ cita.fecha }}</td>
+                    <td>{{ cita.hora }}</td>
+                    <td><a class="text-decoration-none text-black" href="/cliente/{{ cita.cliente.id }}">{{ cita.cliente }}</a></td>
+                    <td><a class="text-decoration-none text-black" href="/perro/{{ cita.perro.id }}">{{ cita.perro }}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <h2>No hay citas.</h2>
+        {% endif %}
+    </div>
+{% endblock content %}

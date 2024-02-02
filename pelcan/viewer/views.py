@@ -36,7 +36,7 @@ def cliente(request, cliente_id):
     return render(request, "viewer/cliente_details.html", context)
 
 def calendario(request):
-    cal = HTMLCalendar().formatyear(2021, 1)
-    context = {"cal": cal}
+    citas = Cita.objects.all()
+    context = {"citas": citas}
 
     return render(request, "viewer/calendario.html", context)

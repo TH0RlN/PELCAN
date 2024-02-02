@@ -6,13 +6,14 @@ function clearCalendar(calendar) {
     }
 }
 
-function main() {
+function main(citas) {
     var calendarInstance = new calendarJs("calendar", {
         manualEditingEnabled: true
         // All your options can be set here
     });
-
     clearCalendar(calendarInstance);
+    
+    for (cita of citas) {
+        calendarInstance.addEvent(cita);
+    }
 }
-
-main();

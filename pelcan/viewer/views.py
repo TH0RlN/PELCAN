@@ -26,3 +26,10 @@ def clientes(request):
     context = {"clientes": clientes}
 
     return render(request, "viewer/clientes.html", context)
+
+def cliente(request, cliente_id):
+    cliente = get_object_or_404(Cliente, pk=cliente_id)
+    perros = Perro.objects.filter(duenho=cliente)
+    context = {"cliente": cliente, "perros": perros}
+
+    return render(request, "viewer/cliente_details.html", context)

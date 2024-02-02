@@ -1,32 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <!--https://calendar-js.com/-->
+
 <head>
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'viewer/js/dist/calendar.js.css' %}">
     <script src="{% static 'viewer/js/dist/calendar.js' %}"></script>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>Document</title>
 </head>
 
 <body>
-    <div id="calendar"></div>
+    <header class="p-2 text-bg-dark">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <h1><a class="h1 text-decoration-none" href="/">PELCAN</a></h1>
+                <ul class="nav ms-3 col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a class="nav-link px-2 text-white" href="/perro">Perros</a></li>
+                    <li><a class="nav-link px-2 text-white" href="/cliente">Clientes</a></li>
+                    <li><a class="nav-link px-2 text-secondary" href="/calendario">Calendario</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="container my-4">
+        <div id="calendar"></div>
+    </div>
 </body>
 <footer>
-    <script> 
-        var calendarInstance1 = new calendarJs( "calendar", {
-          manualEditingEnabled: true
-          // All your options can be set here
-        } );
-      
-        // OR
-        var calendarElement = document.getElementById( "calendar" );
-        var calendarInstance2 = new calendarJs( calendarElement, {
-          manualEditingEnabled: true
-          // All your options can be set here
-        } ); 
-      </script>
+    <script src="{% static 'viewer/js/custom/calendar.js' %}">
+    </script>
 </footer>
+
 </html>

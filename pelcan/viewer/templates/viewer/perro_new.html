@@ -1,0 +1,58 @@
+{% extends 'viewer/template.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <h2>Nuevo Perro</h2>
+    {% if errors %}
+    {% for error in errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    <form action="/perro/new/{{ duenho }}/" method="post">
+        {% csrf_token %}
+        <div class="row my-3">
+            <div class="col-md">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" required value="{{ form.nombre.value }}">
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-group">
+                    <label for="raza">Raza</label>
+                    <input type="text" class="form-control" id="raza" name="raza" required value="{{ form.raza.value }}">
+                </div>
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-md">
+                <div class="form-group">
+                    <label for="edad">Edad</label>
+                    <input type="number" class="form-control" id="edad" name="edad" value="{{ form.edad.value }}">
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-group">
+                    <label for="peso">Peso</label>
+                    <input type="number" class="form-control" id="peso" name="peso" value="{{ form.peso.value }}">
+                </div>
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-md">
+                <div class="form-group">
+                    <label for="foto">Foto</label>
+                    <input type="file" class="form-control" id="foto" name="foto" value="{{ form.foto.value }}">
+                </div>
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-md">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock content %}

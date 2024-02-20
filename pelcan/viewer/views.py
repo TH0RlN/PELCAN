@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
+from django.views.decorators.csrf import requires_csrf_token
 from .models import Cita, Perro, Cliente
+from .forms import ClienteForm
 from calendar import HTMLCalendar
 import datetime
 
@@ -34,6 +36,25 @@ def cliente(request, cliente_id):
     context = {"cliente": cliente, "perros": perros}
 
     return render(request, "viewer/cliente_details.html", context)
+
+@requires_csrf_token
+def cliente_new(request):
+    if request.method == "POST":
+        form = ClienteForm(request.POST)
+        if form.is_valid():
+            nombre = form.cleaned_data["nombre"]
+            apellido = form.cleaned_data["apellido"]
+            telefono = form.cleaned_data["telefono"]
+            email = form.cleaned_data["email"]
+
+            new = Cliente(nombre=nombre, apellido=apellido, telefono=telefono, email=email)
+            new.save()
+
+            return cliente(request, new.id)
+        else:
+            return render(request, "viewer/cliente_new.html", {"form": form})
+    else:
+        return render(request, "viewer/cliente_new.html")
 
 def calendario(request):
     citas = Cita.objects.all()

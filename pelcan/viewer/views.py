@@ -52,7 +52,10 @@ def cliente_new(request):
 
             return cliente(request, new.id)
         else:
-            return render(request, "viewer/cliente_new.html", {"form": form})
+            errors = []
+            for error in form.errors:
+                errors.append(form.errors[error][0])
+            return render(request, "viewer/cliente_new.html", {"form": form, "errors": errors})
     else:
         return render(request, "viewer/cliente_new.html")
 
